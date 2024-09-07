@@ -16,17 +16,17 @@ public class PlayersReader {
 
     public List<Player> read() {
         List<Player> players = new ArrayList<>();
-        // Reads the file and stores the data for the session
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(", ");
                 //TODO Validation of every value (if needed)
+                Long id = Long.valueOf(data[0]);
                 int teamNumber = Integer.parseInt(data[1]);
                 String position = data[2];
                 String fulLName = data[3];
                 Long teamID = Long.valueOf(data[4]);
-                Player player = new Player(teamNumber, position, fulLName, teamID);
+                Player player = new Player(id, teamNumber, position, fulLName, teamID);
                 players.add(player);
             }
         } catch (IOException e) {

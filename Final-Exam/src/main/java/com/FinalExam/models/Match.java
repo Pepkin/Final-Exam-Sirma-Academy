@@ -26,6 +26,14 @@ public class Match {
     public Match() {
     }
 
+    public Match(Long id, Long aTeamID, Long bTeamID, String date, String score) {
+        this.id = id;
+        this.aTeamID = aTeamID;
+        this.bTeamID = bTeamID;
+        this.date = date;
+        this.score = score;
+    }
+
     public Match(Long aTeamID, Long bTeamID, String date, String score) {
         this.aTeamID = aTeamID;
         this.bTeamID = bTeamID;
@@ -37,19 +45,19 @@ public class Match {
         return id;
     }
 
-    public int getaTeamID() {
+    public Long getaTeamID() {
         return aTeamID;
     }
 
-    public void setaTeamID(int aTeamID) {
+    public void setaTeamID(Long aTeamID) {
         this.aTeamID = aTeamID;
     }
 
-    public int getbTeamID() {
+    public Long getbTeamID() {
         return bTeamID;
     }
 
-    public void setbTeamID(int bTeamID) {
+    public void setbTeamID(Long bTeamID) {
         this.bTeamID = bTeamID;
     }
 

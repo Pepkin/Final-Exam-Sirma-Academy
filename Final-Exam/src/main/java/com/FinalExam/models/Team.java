@@ -23,6 +23,13 @@ public class Team {
     public Team() {
     }
 
+    public Team(Long id, String teamName, String managerName, char group) {
+        this.id = id;
+        this.teamName = teamName;
+        this.managerName = managerName;
+        this.group = group;
+    }
+
     public Team(String teamName, String managerName, char group) {
         this.teamName = teamName;
         this.managerName = managerName;

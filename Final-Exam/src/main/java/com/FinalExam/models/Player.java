@@ -27,6 +27,14 @@ public class Player {
     public Player() {
     }
 
+    public Player(Long id, int teamNumber, String position, String fullName, Long teamID) {
+        this.id = id;
+        this.teamNumber = teamNumber;
+        this.position = position;
+        this.fullName = fullName;
+        this.teamID = teamID;
+    }
+
     public Player(int teamNumber, String position, String fullName, Long teamID) {
         this.teamNumber = teamNumber;
         this.position = position;

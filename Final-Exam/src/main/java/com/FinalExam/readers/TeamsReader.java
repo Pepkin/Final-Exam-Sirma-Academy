@@ -22,11 +22,12 @@ public class TeamsReader {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(", ");
                 //TODO Validation of every value (if needed)
+                Long id = Long.valueOf(data[0]);
                 String teamName = data[1];
                 String managerFullName = data[2];
                 char group = data[3].charAt(0);
-                Team record = new Team(teamName, managerFullName, group);
-                teams.add(record);
+                Team team = new Team(id, teamName, managerFullName, group);
+                teams.add(team);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -22,12 +22,13 @@ public class MatchesReader {
             while ((line = br.readLine()) != null) {
                 //TODO Validation of every value (if needed)
                 String[] data = line.split(", ");
+                Long id = Long.valueOf(data[0]);
                 Long aTeamID = Long.valueOf(data[1]);
                 Long bTeamID = Long.valueOf(data[2]);
                 String Date = data[3];
                 String Score = data[4];
-                Match employee = new Match(aTeamID, bTeamID, Date, Score);
-                matches.add(employee);
+                Match match = new Match(id, aTeamID, bTeamID, Date, Score);
+                matches.add(match);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
