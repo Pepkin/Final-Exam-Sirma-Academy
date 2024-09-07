@@ -17,23 +17,23 @@ public class Team {
     @Column(name = "ManagerFullName")
     private String managerName;
 
-    @Column(name = "Group")
-    private char group;
+    @Column(name = "TeamGroup")
+    private String teamGroup;
 
     public Team() {
     }
 
-    public Team(Long id, String teamName, String managerName, char group) {
+    public Team(Long id, String teamName, String managerName, String group) {
         this.id = id;
         this.teamName = teamName;
         this.managerName = managerName;
-        this.group = group;
+        this.teamGroup = group;
     }
 
-    public Team(String teamName, String managerName, char group) {
+    public Team(String teamName, String managerName, String group) {
         this.teamName = teamName;
         this.managerName = managerName;
-        this.group = group;
+        this.teamGroup = group;
     }
 
     public Long getId() {
@@ -56,11 +56,11 @@ public class Team {
         this.managerName = managerName;
     }
 
-    public char getGroup() {
-        return group;
+    public String getTeamGroup() {
+        return teamGroup;
     }
 
-    public void setGroup(char group) {
-        this.group = group;
+    public void setTeamGroup(String teamGroup) {
+        this.teamGroup = teamGroup;
     }
 }

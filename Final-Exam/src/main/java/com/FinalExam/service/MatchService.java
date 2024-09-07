@@ -16,10 +16,9 @@ public class MatchService {
     private MatchesRepository repository;
 
     @Autowired
-    private MatchesReader reader;
+    private MatchesReader reader = new MatchesReader();
 
-    @Bean
-    public void saveMatch(Match match){
+    public Match saveMatch(Match match){
         List<Match> matches = reader.read();
 
         for (Match entity : matches){
@@ -31,6 +30,8 @@ public class MatchService {
         if(!repository.existsById(match.getId())){
             repository.save(match);
         }
+
+        return match;
     }
 
     public List<Match> getAllMatches(){

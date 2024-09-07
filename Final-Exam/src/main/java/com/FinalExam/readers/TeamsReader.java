@@ -25,7 +25,7 @@ public class TeamsReader {
                 Long id = Long.valueOf(data[0]);
                 String teamName = data[1];
                 String managerFullName = data[2];
-                char group = data[3].charAt(0);
+                String group = data[3];
                 Team team = new Team(id, teamName, managerFullName, group);
                 teams.add(team);
             }

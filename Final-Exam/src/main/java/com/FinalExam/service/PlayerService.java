@@ -19,7 +19,6 @@ public class PlayerService {
     @Autowired
     private PlayersReader playersReader;
 
-    @Bean
     public void savePlayer(Player player){
         List<Player> players = playersReader.read();
 

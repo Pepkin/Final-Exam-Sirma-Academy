@@ -18,7 +18,6 @@ public class TeamService {
     @Autowired
     private TeamsReader reader;
 
-    @Bean
     public void saveTeam(Team team){
         List<Team> teams = reader.read();
 

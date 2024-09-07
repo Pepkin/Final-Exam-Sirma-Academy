@@ -17,7 +17,6 @@ public class RecordService {
     @Autowired
     private RecordsReader reader;
 
-    @Bean
     public void saveRecords(){
         List<Record> records = reader.read();
 
