@@ -4,21 +4,18 @@ import com.FinalExam.models.Player;
 import com.FinalExam.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/players")
 public class PlayerController {
 
     @Autowired
     private PlayerService service;
 
-    @GetMapping
+    @GetMapping()
     public List<Player> getAllPlayers(){
         return service.getAllPlayers();
     }
@@ -27,5 +24,8 @@ public class PlayerController {
     public void addPlayer(@RequestBody Player player){
         service.savePlayer(player);
     }
+
+    //@PutMapping
+    //@DeleteMapping
 
 }

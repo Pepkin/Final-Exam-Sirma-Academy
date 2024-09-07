@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.FinalExam.readers.BomRemover.removeBom;
+
 @Component
 public class MatchesReader {
 
@@ -21,8 +23,8 @@ public class MatchesReader {
             String line;
             while ((line = br.readLine()) != null) {
                 //TODO Validation of every value (if needed)
-                String[] data = line.split(", ");
-                Long id = Long.valueOf(data[0]);
+                String[] data = line.split(",");
+                Long id = Long.parseLong(removeBom(data[0]));
                 Long aTeamID = Long.valueOf(data[1]);
                 Long bTeamID = Long.valueOf(data[2]);
                 String Date = data[3];

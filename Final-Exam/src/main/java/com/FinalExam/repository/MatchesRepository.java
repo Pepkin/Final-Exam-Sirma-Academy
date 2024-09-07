@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MatchesRepository extends JpaRepository<Match, Long> {
+    int maxMatchId();
 }

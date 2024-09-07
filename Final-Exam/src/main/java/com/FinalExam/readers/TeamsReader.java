@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.FinalExam.readers.BomRemover.removeBom;
+
 @Component
 public class TeamsReader {
 
@@ -20,9 +22,9 @@ public class TeamsReader {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] data = line.split(", ");
+                String[] data = line.split(",");
                 //TODO Validation of every value (if needed)
-                Long id = Long.valueOf(data[0]);
+                Long id = Long.parseLong(removeBom(data[0]));
                 String teamName = data[1];
                 String managerFullName = data[2];
                 String group = data[3];
