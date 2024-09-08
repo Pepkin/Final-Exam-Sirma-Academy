@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,7 +44,6 @@ public class MatchesReader {
                 }
 
                 String Date = data[3];
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
                 if(!isValidDate(Date)){
                     throw new RuntimeException();
                 }
@@ -68,13 +68,26 @@ public class MatchesReader {
     }
 
     public static boolean isValidDate(String dateString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
 
-        try {
-            LocalDate date = LocalDate.parse(dateString, formatter);
-            return true;
-        } catch (DateTimeParseException e) {
-            return false;
+        List<String> dateFormats = Arrays.asList(
+                "M/d/yyyy",
+                "MM/dd/yyyy",
+                "dd/MM/yyyy",
+                "yyyy-MM-dd",
+                "dd-MMM-yyyy",
+                "yyyy/MM/dd"
+        );
+
+        // Try to parse the date string with each format
+        for (String format : dateFormats) {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+                LocalDate.parse(dateString, formatter);
+                return true;
+            } catch (DateTimeParseException e) {
+                throw new RuntimeException(e);
+            }
         }
+        return false; // If none of the formats matched, return false
     }
 }
