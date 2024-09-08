@@ -25,10 +25,19 @@ public class PlayersReader {
                 String[] data = line.split(",");
                 //TODO Validation of every value (if needed)
                 Long playerId = Long.parseLong(removeBom(data[0]));
+                if(playerId < 0){
+                    throw new NumberFormatException("Wrong data input");
+                }
                 int teamNumber = Integer.parseInt(data[1]);
                 String position = data[2];
+                if(position.length() != 2){
+                    throw new NumberFormatException("Wrong data input");
+                }
                 String fullName = data[3];
                 Long teamID = Long.valueOf(data[4]);
+                if(teamID < 0){
+                    throw new NumberFormatException("Wrong data input");
+                }
                 Player player = new Player(playerId, teamNumber, position, fullName, teamID);
                 players.add(player);
             }

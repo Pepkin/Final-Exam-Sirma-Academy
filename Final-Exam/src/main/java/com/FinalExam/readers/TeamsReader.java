@@ -23,8 +23,10 @@ public class TeamsReader {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                //TODO Validation of every value (if needed)
                 Long id = Long.parseLong(removeBom(data[0]));
+                if(id < 0){
+                    throw new NumberFormatException("Wrong data input");
+                }
                 String teamName = data[1];
                 String managerFullName = data[2];
                 String group = data[3];
