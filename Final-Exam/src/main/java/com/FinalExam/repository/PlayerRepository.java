@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Player, Long> {
-    Player getPlayerById(Long id);
+public interface PlayerRepository extends JpaRepository<Player, Integer> {
+    Player getPlayerById(int id);
 }

@@ -24,19 +24,17 @@ public class RecordsReader {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
 
-                Long id = Long.parseLong(removeBom(data[0]));
+                int id = Integer.parseInt(removeBom(data[0]));
                 validateNumber(id);
 
-                Long playerId = Long.valueOf(data[1]);
+                int playerId = Integer.parseInt(data[1]);
                 validateNumber(playerId);
 
-                Long matchID = Long.valueOf(data[2]);
+                int matchID = Integer.parseInt(data[2]);
                 validateNumber(matchID);
 
                 int fromMinutes = Integer.parseInt(data[3]);
-                if(fromMinutes < 0){
-                    throw new NumberFormatException("Wrong data input");
-                }
+                validateNumber(fromMinutes);
 
                 int toMinutes;
                 if(data[4].equals("NULL")){
@@ -54,7 +52,7 @@ public class RecordsReader {
         return records;
     }
 
-    private void validateNumber(Long number){
+    private void validateNumber(int number){
         if(number < 0){
             throw new NumberFormatException("Wrong data input");
         }

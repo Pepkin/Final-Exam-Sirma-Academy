@@ -1,5 +1,6 @@
 package com.FinalExam.service;
 
+import com.FinalExam.models.Player;
 import com.FinalExam.models.Team;
 import com.FinalExam.readers.TeamsReader;
 import com.FinalExam.repository.TeamsRepository;
@@ -20,14 +21,33 @@ public class TeamService implements ApplicationRunner {
     private TeamsReader TeamsReader;
 
     public void saveTeam(Team team){
-
         if(!repository.existsById(team.getId())){
             repository.save(team);
         }
     }
 
+    public Team getTeamById(int id){
+        return repository.getTeamById(id);
+    }
+
     public List<Team> getAllTeams(){
         return repository.findAll();
+    }
+
+    public Team update(Team team, int id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+            return repository.save(team);
+        }else{
+            return null;
+        }
+
+    }
+
+    public void delete(int id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+        }
     }
 
     @Override

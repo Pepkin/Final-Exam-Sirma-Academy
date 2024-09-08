@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -28,20 +29,24 @@ public class MatchesReader {
             while ((line = br.readLine()) != null) {
                 //TODO Validation of every value (if needed)
                 String[] data = line.split(",");
-                Long id = Long.parseLong(removeBom(data[0]));
+                int id = Integer.parseInt(removeBom(data[0]));
 
                 if(id < 0){
                     throw new NumberFormatException("Wrong data input");
                 }
 
-                Long aTeamID = Long.valueOf(data[1]);
-                Long bTeamID = Long.valueOf(data[2]);
+                int aTeamID = Integer.parseInt(data[1]);
+                int bTeamID = Integer.parseInt(data[2]);
 
-                if (aTeamID <= 0 || bTeamID <= 0) {
+                if ((aTeamID <= 0 || bTeamID <= 0) || aTeamID == bTeamID) {
                     throw new NumberFormatException("Wrong data input");
                 }
 
                 String Date = data[3];
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                if(!isValidDate(Date)){
+                    throw new RuntimeException();
+                }
 
                 String Score = data[4];
                 //Validate Score pattern
@@ -60,5 +65,16 @@ public class MatchesReader {
             throw new RuntimeException(e);
         }
         return matches;
+    }
+
+    public static boolean isValidDate(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+
+        try {
+            LocalDate date = LocalDate.parse(dateString, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 }

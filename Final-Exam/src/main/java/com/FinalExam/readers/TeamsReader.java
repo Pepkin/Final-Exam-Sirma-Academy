@@ -23,7 +23,7 @@ public class TeamsReader {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                Long id = Long.parseLong(removeBom(data[0]));
+                int id = Integer.parseInt(removeBom(data[0]));
                 if(id < 0){
                     throw new NumberFormatException("Wrong data input");
                 }

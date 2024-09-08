@@ -11,13 +11,13 @@ public class Record {
 
     @Id
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
 
     @Column(name = "PlayerID")
-    private Long playerId;
+    private Integer playerId;
 
     @Column(name = "MatchID")
-    private Long MatchId;
+    private Integer MatchId;
 
     @Column(name = "formMinutes")
     private int fromMinutes;
@@ -28,7 +28,7 @@ public class Record {
     public Record() {
     }
 
-    public Record(Long id, Long playerId, Long matchId, int fromMinutes, int toMinutes) {
+    public Record(Integer id, Integer playerId, Integer matchId, int fromMinutes, int toMinutes) {
         this.id = id;
         this.playerId = playerId;
         MatchId = matchId;
@@ -36,27 +36,27 @@ public class Record {
         this.toMinutes = toMinutes;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getPlayerId() {
+    public int getPlayerId() {
         return playerId;
     }
 
-    public void setPlayerId(Long playerId) {
+    public void setPlayerId(int playerId) {
         this.playerId = playerId;
     }
 
-    public Long getMatchId() {
+    public Integer getMatchId() {
         return MatchId;
     }
 
-    public void setMatchId(Long matchId) {
+    public void setMatchId(Integer matchId) {
         MatchId = matchId;
     }
 

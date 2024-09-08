@@ -36,10 +36,10 @@ public class BusinessLogic {
         List<Team> teams = teamsRepository.findAll();
 
         //Find how many matches played each team
-        HashMap<Long, Integer> teamsAndTheirMatches = new HashMap<>();
+        HashMap<Integer, Integer> teamsAndTheirMatches = new HashMap<>();
 
         for (int i = 0; i < teams.size(); i++) {
-            ArrayList<Long> matchesForATeam = new ArrayList<>();
+            ArrayList<Integer> matchesForATeam = new ArrayList<>();
             for (Match match : matches){
                 if(match.getaTeamID() == teams.get(i).getId()){
                     matchesForATeam.add(match.getId());
@@ -50,9 +50,9 @@ public class BusinessLogic {
 
         //Find which team has the most matches
         int mostMatches = 0;
-        Long mostPlayedGamesTeam = 0L;
-        HashMap<Long, Integer> bestTeam = new HashMap<>();
-        for(Map.Entry<Long, Integer> team : teamsAndTheirMatches.entrySet()){
+        int mostPlayedGamesTeam = 0;
+        HashMap<Integer, Integer> bestTeam = new HashMap<>();
+        for(Map.Entry<Integer, Integer> team : teamsAndTheirMatches.entrySet()){
             if (team.getValue() > mostMatches){
                 mostMatches = team.getValue();
                 mostPlayedGamesTeam = team.getKey();
@@ -61,10 +61,10 @@ public class BusinessLogic {
         bestTeam.put(mostPlayedGamesTeam,mostMatches);
 
         //find matchID where the best team played
-        HashMap<Long,ArrayList<Long>> TeamPerMatchList = new HashMap<>();
+        HashMap<Integer,ArrayList<Integer>> TeamPerMatchList = new HashMap<>();
 
-        for (Map.Entry<Long, Integer> team : bestTeam.entrySet()){
-            ArrayList<Long> matchList = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> team : bestTeam.entrySet()){
+            ArrayList<Integer> matchList = new ArrayList<>();
             for (Match match : matches){
                 if(team.getKey() == match.getaTeamID() || team.getKey() == match.getbTeamID()){
                    matchList.add(match.getId());
@@ -74,9 +74,9 @@ public class BusinessLogic {
         }
 
         //Find Collective time of the players in all matches individually
-        HashMap<Long, Integer> playersAndTheirPlayedTime = new HashMap<>();
+        HashMap<Integer, Integer> playersAndTheirPlayedTime = new HashMap<>();
 
-        for ( Map.Entry<Long, ArrayList<Long>> team: TeamPerMatchList.entrySet()){
+        for ( Map.Entry<Integer, ArrayList<Integer>> team: TeamPerMatchList.entrySet()){
             for (Record record : records){
                 if (team.getValue().contains(record.getMatchId())){
                     int timeSpent = record.getToMinutes() - record.getFromMinutes();
@@ -91,9 +91,9 @@ public class BusinessLogic {
         }
 
         //Check which of these players are on the same team
-        HashMap<Long, Integer> playersFromTheSameTeam = new HashMap<>();
+        HashMap<Integer, Integer> playersFromTheSameTeam = new HashMap<>();
 
-        for (Map.Entry<Long, Integer> playerAndTime : playersAndTheirPlayedTime.entrySet()){
+        for (Map.Entry<Integer, Integer> playerAndTime : playersAndTheirPlayedTime.entrySet()){
             for (Player player : players){
                 for (Team team : teams){
                     if(playerAndTime.getKey() == player.getId() && player.getTeamID() == team.getId()){
@@ -106,7 +106,7 @@ public class BusinessLogic {
         //Find the names of the players
         HashMap<String, Integer> namesAndTime = new HashMap<>();
 
-        for (Map.Entry<Long, Integer> player : playersFromTheSameTeam.entrySet()){
+        for (Map.Entry<Integer, Integer> player : playersFromTheSameTeam.entrySet()){
             for (Player entity : players){
                 if (player.getKey() == entity.getId()){
                     namesAndTime.put(entity.getFullName(), player.getValue());

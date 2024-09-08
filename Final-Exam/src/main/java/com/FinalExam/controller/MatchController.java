@@ -3,7 +3,7 @@ package com.FinalExam.controller;
 import com.FinalExam.models.Match;
 import com.FinalExam.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +20,24 @@ public class MatchController {
         return service.getAllMatches();
     }
 
-    @PostMapping("/addMatch")
-    public void addMatch(@RequestBody Match match){
-        service.saveMatch(match);
+    @GetMapping("/{id}")
+    public Match getAllMatches(@PathVariable int id){
+        return service.getMatchById(id);
     }
 
-    //@PutMapping
-    //@DeleteMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/addMatch")
+    public Match addMatch(@RequestBody Match match){
+        return service.saveMatch(match);
+    }
+
+    @PutMapping("/{id}")
+    public Match update(@RequestBody Match match, @PathVariable int id){
+        return service.update(match, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id){
+        service.delete(id);
+    }
 }

@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MatchesRepository extends JpaRepository<Match, Long> {
+public interface MatchesRepository extends JpaRepository<Match, Integer> {
+    public Match getMatchById(int id);
 }

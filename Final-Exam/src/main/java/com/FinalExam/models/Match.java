@@ -7,15 +7,14 @@ import jakarta.persistence.*;
 public class Match {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long id;
+    private int id;
 
     @Column(name = "ATeamID")
-    private Long aTeamID;
+    private int aTeamID;
 
     @Column(name = "BTeamID")
-    private Long bTeamID;
+    private int bTeamID;
 
     @Column(name = "Date")
     private String date;
@@ -26,7 +25,7 @@ public class Match {
     public Match() {
     }
 
-    public Match(Long id, Long aTeamID, Long bTeamID, String date, String score) {
+    public Match(int id, int aTeamID, int bTeamID, String date, String score) {
         this.id = id;
         this.aTeamID = aTeamID;
         this.bTeamID = bTeamID;
@@ -34,30 +33,23 @@ public class Match {
         this.score = score;
     }
 
-    public Match(Long aTeamID, Long bTeamID, String date, String score) {
-        this.aTeamID = aTeamID;
-        this.bTeamID = bTeamID;
-        this.date = date;
-        this.score = score;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public Long getaTeamID() {
+    public int getaTeamID() {
         return aTeamID;
     }
 
-    public void setaTeamID(Long aTeamID) {
+    public void setaTeamID(int aTeamID) {
         this.aTeamID = aTeamID;
     }
 
-    public Long getbTeamID() {
+    public int getbTeamID() {
         return bTeamID;
     }
 
-    public void setbTeamID(Long bTeamID) {
+    public void setbTeamID(int bTeamID) {
         this.bTeamID = bTeamID;
     }
 

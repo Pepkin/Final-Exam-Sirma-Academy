@@ -1,7 +1,6 @@
 package com.FinalExam.service;
 
 import com.FinalExam.models.Match;
-import com.FinalExam.models.Player;
 import com.FinalExam.readers.MatchesReader;
 import com.FinalExam.repository.MatchesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,29 @@ public class MatchService implements ApplicationRunner {
 
     public List<Match> getAllMatches(){
         return repository.findAll();
+    }
+
+    public Match getMatchById(int id){
+        if(repository.existsById(id)){
+            return repository.getMatchById(id);
+        }else{
+            return null;
+        }
+    }
+    public Match update(Match match, int id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+            return repository.save(match);
+        }else{
+            return null;
+        }
+
+    }
+
+    public void delete(int id){
+        if (repository.existsById(id)){
+            repository.deleteById(id);
+        }
     }
 
     @Override

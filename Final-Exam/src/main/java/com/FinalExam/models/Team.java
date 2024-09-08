@@ -7,9 +7,8 @@ import jakarta.persistence.*;
 public class Team {
 
     @Id
-    @GeneratedValue
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
 
     @Column(name = "Name")
     private String teamName;
@@ -23,7 +22,7 @@ public class Team {
     public Team() {
     }
 
-    public Team(Long id, String teamName, String managerName, String group) {
+    public Team(Integer id, String teamName, String managerName, String group) {
         this.id = id;
         this.teamName = teamName;
         this.managerName = managerName;
@@ -36,7 +35,7 @@ public class Team {
         this.teamGroup = group;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

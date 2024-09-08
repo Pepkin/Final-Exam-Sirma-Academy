@@ -8,9 +8,8 @@ import org.antlr.v4.runtime.misc.NotNull;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
 
     @Column(name = "TeamNumber")
     private int teamNumber;
@@ -22,12 +21,12 @@ public class Player {
     private String fullName;
 
     @Column(name = "TeamID")
-    private Long teamID;
+    private Integer teamID;
 
     public Player() {
     }
 
-    public Player(Long id, int teamNumber, String position, String fullName, Long teamID) {
+    public Player(Integer id, int teamNumber, String position, String fullName, Integer teamID) {
         this.id = id;
         this.teamNumber = teamNumber;
         this.position = position;
@@ -35,14 +34,7 @@ public class Player {
         this.teamID = teamID;
     }
 
-    public Player(int teamNumber, String position, String fullName, Long teamID) {
-        this.teamNumber = teamNumber;
-        this.position = position;
-        this.fullName = fullName;
-        this.teamID = teamID;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -70,11 +62,11 @@ public class Player {
         this.fullName = fullName;
     }
 
-    public Long getTeamID() {
+    public Integer getTeamID() {
         return teamID;
     }
 
-    public void setTeamID(Long teamID) {
+    public void setTeamID(Integer teamID) {
         this.teamID = teamID;
     }
 }

@@ -24,7 +24,7 @@ public class PlayersReader {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 //TODO Validation of every value (if needed)
-                Long playerId = Long.parseLong(removeBom(data[0]));
+                int playerId = Integer.parseInt(removeBom(data[0]));
                 if(playerId < 0){
                     throw new NumberFormatException("Wrong data input");
                 }
@@ -34,7 +34,7 @@ public class PlayersReader {
                     throw new NumberFormatException("Wrong data input");
                 }
                 String fullName = data[3];
-                Long teamID = Long.valueOf(data[4]);
+                int teamID = Integer.parseInt(data[4]);
                 if(teamID < 0){
                     throw new NumberFormatException("Wrong data input");
                 }

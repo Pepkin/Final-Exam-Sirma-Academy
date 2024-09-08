@@ -6,6 +6,7 @@ import com.FinalExam.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,13 +21,33 @@ public class PlayerService implements ApplicationRunner {
     private PlayersReader playersReader;
 
     public void savePlayer(Player player){
-        if(!repository.existsById(player.getId())){
            repository.save(player);
-        }
     }
 
     public List<Player> getAllPlayers(){
         return repository.findAll();
+    }
+
+    public Player getById(int id){
+        return repository.getPlayerById(id);
+    }
+
+    public Player update(Player player, int id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+            return player;
+        }else{
+            return null;
+        }
+    }
+
+    public ResponseEntity.HeadersBuilder<?> delete(int id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+        }else{
+            return ResponseEntity.notFound();
+        }
+        return null;
     }
 
     @Override
